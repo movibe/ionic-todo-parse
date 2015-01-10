@@ -16,7 +16,7 @@
             show-delete="data.showDelete"
             >
         <ion-item
-                ng-repeat="item in items.todos | orderBy: '-createdAt'"
+                ng-repeat="item in todos() | orderBy: '-createdAt'"
                 item="item"
                 href="#/todo/edit/{{ item.objectId }}/{{ item.content }}"
                 >
@@ -25,4 +25,5 @@
         </ion-item>
 
     </ion-list>
+
 </ion-content>

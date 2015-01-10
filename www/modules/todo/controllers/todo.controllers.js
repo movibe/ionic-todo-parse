@@ -5,15 +5,13 @@
 angular.module ('com.todoParse.controllers', [
     'com.todoParse.services'
 ])
-    .controller ('TodoListCtrl', [
-    '$scope',
-    'Session',
-    'TodoModel',
+    .controller ('TodoListCtrl',
     function ($scope, Session, TodoModel) {
         // Pego toda as tarefas do servidor
-        TodoModel.all ();
 
-        $scope.items = TodoModel;
+        $scope.todos = function () {
+            return TodoModel.list ();
+        };
 
         $scope.refresh = function () {
             TodoModel.all ();
@@ -23,16 +21,12 @@ angular.module ('com.todoParse.controllers', [
         // Deleto uma tarefa no servidor e tiro da minha lista
         $scope.delete = function (item) {
             TodoModel.delete (item.objectId);
-            ;
         };
 
     }
-])
+)
 
-    .controller ('TodoCreateCtrl', [
-    '$scope',
-    'TodoModel',
-    '$state',
+    .controller ('TodoCreateCtrl',
     function ($scope, TodoModel, $state) {
 
         $scope.init = function () {
@@ -48,13 +42,9 @@ angular.module ('com.todoParse.controllers', [
         };
 
     }
-])
+)
 
-    .controller ('TodoEditCtrl', [
-    '$scope',
-    'TodoModel',
-    '$state',
-    '$stateParams',
+    .controller ('TodoEditCtrl',
     function ($scope, TodoModel, $state, $stateParams) {
 
         $scope.todo = {
@@ -74,4 +64,4 @@ angular.module ('com.todoParse.controllers', [
         };
 
     }
-])
+);
